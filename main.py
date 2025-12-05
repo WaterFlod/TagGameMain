@@ -1,4 +1,5 @@
 import random
+import time
 
 
 # Функция с главной логикой игры
@@ -53,3 +54,34 @@ def random_desk(game_board, x, y):
         elif move == "d":
             game_board[x][y], game_board[x][y+1] = game_board[x][y+1], game_board[x][y]
             y += 1
+
+
+def main():
+    
+    # Выигрышная доска
+    win_board = [[" 1 ", " 2 ", " 3 ", " 4 "], 
+                [" 5 ", " 6 ", " 7 ", " 8 "], 
+                [" 9 ", "10 ", "11 ", "12 "], 
+                ["13 ", "14 ", "15 ", "   "]]
+
+    # Копируем каждый эллемент из выигрышной доски
+    game_board = [x[:] for x in win_board]
+
+    # Перемешиваем доску
+    random_desk(game_board, 3, 3)
+
+    # Очищаем терминал
+    clear_desk()
+
+    print("Игра началась!")
+
+    time.sleep(1)
+
+    clear_desk()
+
+    # Запускаем всю основную логику
+    game_logic(game_board)
+
+
+if __name__ == "__main__":
+    main()
